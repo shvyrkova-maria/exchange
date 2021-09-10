@@ -7,7 +7,6 @@ import { Status } from './constants/requestStatus';
 
 function App() {
   const classes = useStyles();
-  // const [date, setDate] = useState(() => new Date().toLocaleDateString());
   const [date, setDate] = useState('');
   const [exchangeRateData, setExchangeRateData] = useState([]);
   const [status, setStatus] = useState(Status.RESOLVED);
@@ -16,18 +15,18 @@ function App() {
   useEffect(() => {
     const now = new Date().toLocaleDateString();
     setDate(now);
-    // setStatus(Status.PENDING);
-    // async function fetchTodayExchage() {
-    //   try {
-    //     const { exchangeRate } = await fetchExchage(now);
-    //     setExchangeRateData(exchangeRate);
-    //     setStatus(Status.RESOLVED);
-    //   } catch (err) {
-    //     setError(err.message);
-    //     setStatus(Status.REJECTED);
-    //   }
-    // }
-    // fetchTodayExchage();
+    setStatus(Status.PENDING);
+    async function fetchTodayExchage() {
+      try {
+        const { exchangeRate } = await fetchExchage(now);
+        setExchangeRateData(exchangeRate);
+        setStatus(Status.RESOLVED);
+      } catch (err) {
+        setError(err.message);
+        setStatus(Status.REJECTED);
+      }
+    }
+    fetchTodayExchage();
   }, []);
 
   return (
@@ -36,7 +35,7 @@ function App() {
       {status === Status.RESOLVED && (
         <>
           <h1 className={classes.title}>{`Exchange rates ${date}`}</h1>
-          <ExcangeRateTable />
+          <ExcangeRateTable exchangeRateData={exchangeRateData} />
         </>
       )}
       {status === Status.REJECTED && <h1>{`Error: ${error}`}</h1>}

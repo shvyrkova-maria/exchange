@@ -7,9 +7,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useStyles } from './ExcangeRateTable.styled';
-import * as response from '../../services/db.json';
 
-export default function ExcangeRateTable() {
+export default function ExcangeRateTable({ exchangeRateData }) {
   const classes = useStyles();
   return (
     <TableContainer component={Paper} className={classes.container}>
@@ -22,7 +21,7 @@ export default function ExcangeRateTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {response.exchangeRate.map(rate => {
+          {exchangeRateData.map(rate => {
             return (
               <TableRow key={rate.currency}>
                 <TableCell align="center" component="th" scope="row">
