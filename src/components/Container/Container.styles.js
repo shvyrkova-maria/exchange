@@ -6,8 +6,4 @@ export const useStyles = makeStyles({
     justifyContent: 'center',
     flexDirection: 'column',
   },
-  title: {
-    textTransform: 'uppercase',
-    color: '#26a69a',
-  },
 });
