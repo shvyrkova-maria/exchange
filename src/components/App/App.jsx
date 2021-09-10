@@ -13,7 +13,7 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const dateNow = new Date().toLocaleDateString('UA');
+    const dateNow = new Date().toLocaleDateString('uk-UA');
     setDate(dateNow);
     setStatus(Status.PENDING);
     async function fetchTodayExchage() {
